@@ -3,7 +3,11 @@ package com.jmdcode.curso.springboot.webapp.springboot_web.models;
 public class User {
     private String name;
     private String lastName;
+    private String email;
     private Boolean active;
+
+    public User() {
+    }
 
     public User(String name, String lastName) {
         this(name, lastName, true);
@@ -29,6 +33,14 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Boolean getActive() {

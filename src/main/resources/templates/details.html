@@ -6,6 +6,12 @@
     <title th:text="${title}"></title>
   </head>
   <body>
-    <h1>Hello <span th:text="${user.name}"></span> <span th:text="${user.lastName}"></span></h1>
+    <h1>
+      Hello
+      <span th:text="${user.name}"></span>
+      <span th:text="${user.lastName}"></span>
+      <span th:if="${user.email}" th:text="'(' + ${user.email} + ')'"></span>
+      <span th:if="${user.email == null}">(No existe el correo)</span>
+    </h1>
   </body>
 </html>

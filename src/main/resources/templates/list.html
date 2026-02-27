@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title th:text="${title}"></title>
+
+    <style>
+      body {
+        font-family:
+          'Segoe UI',
+          system-ui,
+          -apple-system,
+          sans-serif;
+        background-color: #f9fafb;
+        color: #1f2937;
+        padding: 2rem;
+        margin: 0;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: 1.875rem;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 1.5rem;
+      }
+
+      .table-container {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow:
+          0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        overflow: auto;
+      }
+
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+      }
+
+      .table thead {
+        background-color: #f3f4f6;
+        border-bottom: 2px solid #e5e7eb;
+      }
+
+      .table th {
+        padding: 12px 16px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #4b5563;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        text-align: center;
+      }
+
+      .table td {
+        padding: 14px 16px;
+        border-bottom: 1px solid #e5e7eb;
+        color: #374151;
+        font-size: 0.95rem;
+        text-align: center;
+      }
+
+      .table tbody tr {
+        transition: background-color 0.2s ease;
+      }
+
+      .table tbody tr:hover {
+        background-color: #f9fafb;
+      }
+
+      .table tbody tr:last-child td {
+        border-bottom: none;
+      }
+
+      .empty-state {
+        background-color: #ffffff;
+        border: 2px dashed #d1d5db;
+        border-radius: 8px;
+        padding: 3rem;
+        text-align: center;
+        color: #6b7280;
+        font-size: 1.1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 th:text="${title}"></h1>
+
+      <div th:if="${not users.isEmpty()}" class="table-container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Active</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr th:each="user: ${users}">
+              <td th:text="${user.name}"></td>
+              <td th:text="${user.lastName}"></td>
+              <td th:if="${user.email != null}" th:text="${user.email}"></td>
+              <td th:if="${user.email == null}" th:text="'-'"></td>
+              <td th:text="${user.active ? 'Yes' : 'No'}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div th:if="${users.size() == 0}" class="empty-state">
+        <p>Not users found.</p>
+      </div>
+    </div>
+  </body>
+</html>
