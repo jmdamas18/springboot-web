@@ -13,5 +13,9 @@
       <span th:if="${user.email}" th:text="'(' + ${user.email} + ')'"></span>
       <span th:if="${user.email == null}">(No existe el correo)</span>
     </h1>
+
+    <div>
+      <a th:href="@{/list}">Volver al listado</a>
+    </div>
   </body>
 </html>
